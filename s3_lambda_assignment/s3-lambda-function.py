@@ -12,12 +12,13 @@ def lambda_handler(event, context):
                 'statusCode': 200,
                 'body': f'Skipping event type: {event_name}'
             }
-
+        
         bucket = event['Records'][0]['s3']['bucket']['name']
         key = event['Records'][0]['s3']['object']['key']
+        print(bucket)
+        print(key)
 
-        folder_name = os.path.dirname(key)
-
+        
         file_extension = os.path.splitext(key)[1].lower()
 
         s3 = boto3.client('s3')
