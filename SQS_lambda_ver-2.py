@@ -7,16 +7,13 @@ def lambda_handler(event, context):
 
     for record in event['Records']:
         try:
-            # Print the record body for debugging purposes
             print(f"Record Body: {record['body']}")
 
             message_body = json.loads(record['body'])
             
-            # Extract status and content from the message body
             status = message_body.get('status', 'default').lower()
             message_content = message_body.get('content', 'No content')
 
-            # Perform actions based on status
             if status == 'refund':
                 sns_topic_arn = 'arn:aws:sns:us-east-1:882457892107:refund_sns' 
                 to_email = 'manoj11223s@gmail.com'
