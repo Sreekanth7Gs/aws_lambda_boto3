@@ -5,14 +5,6 @@ def lambda_handler(event, context):
     try:
         print(f"Received event: {event}")
 
-        event_name = event['Records'][0]['eventName']
-        if event_name != 'ObjectCreated:Put':
-            print(f"Skipping event type: {event_name}")
-            return {
-                'statusCode': 200,
-                'body': f'Skipping event type: {event_name}'
-            }
-        
         bucket = event['Records'][0]['s3']['bucket']['name']
         key = event['Records'][0]['s3']['object']['key']
         print(bucket)
