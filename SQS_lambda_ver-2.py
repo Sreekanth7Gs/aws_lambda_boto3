@@ -10,7 +10,7 @@ def lambda_handler(event, context):
 
             message_body = json.loads(record['body'])
             
-            status = message_body.get('status', 'default').lower()
+            status = message_body.get('status').lower()
 
             if status == 'refund':
                 sns_topic_arn = 'arn:aws:sns:us-east-1:882457892107:refund_sns' 
